@@ -1,3 +1,10 @@
+/** Font Awesome */
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/regular.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+@import '@fortawesome/fontawesome-free/css/brands.css';
+
+/** Tailwind */
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -9,3 +16,69 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/** Custom */
+nav {
+    @apply flex justify-around items-center ;
+}
+
+nav > ul {
+    @apply flex justify-center items-center;
+}
+
+nav > ul > li > a {
+    @apply p-2 capitalize rounded m-2;
+}
+
+nav > ul > li > a:hover, .active-nav {
+    @apply bg-gray-400 transition-all duration-500 ease-in;
+}
+
+h1 {
+    @apply text-5xl;
+}
+
+h2 {
+    @apply text-4xl;
+}
+
+h3 {
+    @apply text-3xl;
+}
+
+h4 {
+    @apply text-2xl;
+}
+
+.container {
+    @apply flex justify-center items-center flex-col;
+}
+
+.card {
+    @apply flex justify-start items-center flex-col p-4 m-10 border rounded-md min-w-[24rem] min-h-[24rem];
+}
+
+form {
+    @apply m-2 p-4;
+}
+
+.form-group {
+    @apply m-2 flex justify-between items-center;
+}
+
+input {
+    @apply border rounded outline-none p-2 m-2;
+}
+
+button {
+    @apply p-2 bg-sky-500 text-cyan-50 m-2 rounded cursor-pointer;
+}
+
+button:hover {
+  @apply ring-4 ring-sky-800 ring-offset-2;
+}
+
+.input-group {
+    @apply flex justify-around items-center;
+}
+

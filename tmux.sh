@@ -12,8 +12,8 @@ if [ $? != 0 ]; then
     tmux new-window -n editor -t ${SESSION_NAME}
     tmux send-keys -t ${SESSION_NAME}:editor "nvim ." Enter
 
-    tmux new-window -n browser -t ${SESSION_NAME}
-    tmux send-keys -t ${SESSION_NAME}:browser "lynx -vikeys" Enter
+    tmux new-window -n client -t ${SESSION_NAME}
+    tmux send-keys -t ${SESSION_NAME}:client "npm run dev" Enter
 
     tmux new-window -n extra -t ${SESSION_NAME}
 

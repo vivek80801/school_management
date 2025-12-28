@@ -11,6 +11,7 @@ There are some requirements for this project
 ## Setup
 
 ```bash
+    git clone https://github.coom/vivek80801/school_management; cd school_management; composer install; npm install
     # start docker compose
     ./start.sh
 ```
