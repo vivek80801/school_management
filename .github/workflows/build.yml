@@ -1,4 +1,4 @@
-name: Test laravel application
+name: Test Laravel application
 
 on:
   push:
@@ -9,22 +9,39 @@ on:
       - main
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-    - name: checkout code
-      uses: actions/checkout@v3
-    - name: setup php
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.3
-    - name: composer install
-      run: composer install --optimize-autoloader --no-dev --no-progress --no-interatcion --prefer-dist
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '22.13.1'
-    - name: Install npm dependencies
-      run: npm run build
-    - name: Test the application
-      run: php artisan test
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, pdo, pdo_mysql
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Prepare Laravel environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Run tests
+        run: php artisan test
+
