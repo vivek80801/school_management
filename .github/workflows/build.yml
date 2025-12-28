@@ -15,7 +15,7 @@ jobs:
     - name: checkout code
       uses: actions/checkout@v3
     - name: setup php
-      uses: shivammathur/set-php@v2
+      uses: shivammathur/setup-php@v2
       with:
         php-version: 8.3
     - name: composer install
