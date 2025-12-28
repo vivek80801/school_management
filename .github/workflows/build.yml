@@ -19,7 +19,7 @@ jobs:
       with:
         php-version: 8.3
     - name: composer install
-      run: composer install --optimize-autoloader --no-dev --no-process --no-interatcion --prefer-dist
+      run: composer install --optimize-autoloader --no-dev --no-progress --no-interatcion --prefer-dist
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
