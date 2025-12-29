@@ -24,7 +24,7 @@ jobs:
           coverage: none
 
       - name: Install Composer dependencies
-        run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
+        run: composer install --no-progress --no-interaction --prefer-dist
 
       - name: Setup SQLite database
         run: |
