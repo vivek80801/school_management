@@ -30,4 +30,3 @@ you can install tmux on your own. otherwise
 # start docker compose
 ./start.sh
 ```
-

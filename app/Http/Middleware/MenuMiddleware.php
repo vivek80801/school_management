@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Facades\MenuBuilderFacade;
+use App\Utilities\ModuleUtility;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,9 @@ class MenuMiddleware
             ->add('Dashboard', route('dashboard'))
             ->add('Hi', route('dashboard'), 'Home')
         ;
+
+        $all_modules = new ModuleUtility();
+        $all_modules->getModuleData("modify_menu");
 
         return $next($request);
     }
