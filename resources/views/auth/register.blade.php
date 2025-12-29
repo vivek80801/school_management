@@ -5,7 +5,7 @@
 @section("content")
     <div class="card">
         <h1>Register</h1>
-        <form action="{{ route('register') }}" method="post">
+        <form id="register_form" action="{{ route('register') }}" method="post">
             @csrf
             <div class="form-group">
                 <label for="name">Name: </label>
@@ -37,7 +37,7 @@
                 <input type="password" id="confirmed_password" name="password_confirmation"  />
             </div>
             <br />
-            <button type="submit">Register</button>
+            <button id="register_submit" type="submit">Register</button>
         </form>
     </div>
 @endsection
@@ -48,6 +48,8 @@
         const confirmPassword = document.getElementById("confirmed_password");
         const eyeOpenIcon = document.getElementById("eye");
         const eyeCloseIcon = document.getElementById("eye-close");
+        const registerForm = document.getElementById("register_form");
+        const registerSubmitBtn = document.getElementById("register_submit");
 
         eyeCloseIcon.style.cursor = "pointer";
         eyeOpenIcon.style.cursor = "pointer";
@@ -65,5 +67,14 @@
             eyeOpenIcon.style.display = "block";
             eyeCloseIcon.style.display = "none";
         });
+
+        registerForm.addEventListener("submit", function (){
+            registerSubmitBtn.disabled = true;
+            registerSubmitBtn.innerHTML += `
+                <div class="loader">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+            `;
+        })
     </script>
 @endpush

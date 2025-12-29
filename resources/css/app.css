@@ -78,7 +78,24 @@ button:hover {
   @apply ring-4 ring-sky-800 ring-offset-2;
 }
 
+button:disabled {
+  @apply ring-4 ring-sky-800 ring-offset-2 bg-sky-300;
+}
+
 .input-group {
     @apply flex justify-around items-center;
 }
 
+.loader {
+    display: inline-block;
+    animation: rotate 500ms linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

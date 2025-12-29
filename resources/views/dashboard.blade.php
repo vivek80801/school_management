@@ -8,5 +8,6 @@
     @elseif (Session::has("error"))
         <span class="text-red-500">{{Session::get("error")}}</span>
     @endif
+    <x-menubar />
     <h1>Welcome {{auth()->user()->name}}</h1>
 @endsection

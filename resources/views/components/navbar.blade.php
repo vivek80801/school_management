@@ -8,11 +8,26 @@
         @else
             <li><a class="{{Route::is('dashboard') ? 'active-nav' : ''}}" href="{{ route('dashboard') }}">dashboard</a></li>
             <li>
-                <form action="{{route('logout')}}" method="POST">
+                <form id="logout_form" action="{{route('logout')}}" method="POST">
                     @csrf
-                    <button type="submit">Logout</button>
+                    <button id="logout_btn" type="submit">Logout</button>
                 </form>
             </li>
         @endif
     </ul>
 </nav>
+@push("javascript")
+    <script>
+        const logoutForm = document.getElementById("logout_form");
+        const logoutBtn = document.getElementById("logout_btn");
+
+        logoutForm.addEventListener("submit", function (){
+            logoutBtn.disabled = true;
+            logoutBtn.innerHTML += `
+                <div class="loader">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+            `;
+        })
+    </script>
+@endpush
