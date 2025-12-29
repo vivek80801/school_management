@@ -1,0 +1,4 @@
+
+.card {
+    @apply flex justify-start items-center flex-col p-4 m-10 border rounded-md min-w-[24rem] min-h-[24rem];
+}

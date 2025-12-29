@@ -47,7 +47,24 @@ class MenuBuilder {
     */
     public function getMenu(): array
     {
-        return $this->menu;
+        $new_menu = [];
+        foreach($this->menu as $menu)
+        {
+            $children = [];
+            foreach($this->menu as $check_menu)
+            {
+                if($check_menu->parent && $menu->id == $check_menu->parent)
+                {
+                    array_push($children, $check_menu);
+                }
+            }
+            $menu->children = $children;
+            if(!$menu->parent)
+            {
+                array_push($new_menu, $menu);
+            }
+        }
+        return $new_menu;
     }
 
     private function generateId(string $name): string

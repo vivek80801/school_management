@@ -28,7 +28,7 @@ class AuthController extends Controller
         {
             return redirect()->route("dashboard")->with("success", "You are successfully logged in");
         }else{
-            return redirect()->route("login")->with("error", "Ops! you are not logged in");
+            return redirect()->route("login")->with("error", "Credentails are wrong");
         }
     }
 

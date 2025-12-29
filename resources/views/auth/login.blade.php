@@ -5,11 +5,6 @@
 @section("content")
     <div class="card">
         <h1>Log in</h1>
-        @if (Session::has("success"))
-            <span class="text-green-500">{{Session::get("success")}}</span>
-        @elseif (Session::has("error"))
-            <span class="text-red-500">{{Session::get("error")}}</span>
-        @endif
         <form action="{{ route('login') }}" method="post" id="login_form">
             @csrf
             <div class="form-group">

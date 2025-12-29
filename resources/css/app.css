@@ -12,51 +12,27 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+/* Base */
+@import "./base/reset.css";
+@import "./base/typography.css";
+@import "./base/helper.css";
+
+/* Components */
+@import "./components/button.css";
+@import "./components/card.css";
+
+/* Layouts */
+@import "./layouts/navbar.css";
+@import "./layouts/menubar.css";
+
+/* Pages */
 
 /** Custom */
-nav {
-    @apply flex justify-around items-center ;
-}
-
-nav > ul {
-    @apply flex justify-center items-center;
-}
-
-nav > ul > li > a {
-    @apply p-2 capitalize rounded m-2;
-}
-
-nav > ul > li > a:hover, .active-nav {
-    @apply bg-gray-400 transition-all duration-500 ease-in;
-}
-
-h1 {
-    @apply text-5xl;
-}
-
-h2 {
-    @apply text-4xl;
-}
-
-h3 {
-    @apply text-3xl;
-}
-
-h4 {
-    @apply text-2xl;
-}
 
 .container {
-    @apply flex justify-center items-center flex-col;
+    @apply flex justify-center items-center flex-col p-5;
 }
 
-.card {
-    @apply flex justify-start items-center flex-col p-4 m-10 border rounded-md min-w-[24rem] min-h-[24rem];
-}
 
 form {
     @apply m-2 p-4;
@@ -68,18 +44,6 @@ form {
 
 input {
     @apply border rounded outline-none p-2 m-2;
-}
-
-button {
-    @apply p-2 bg-sky-500 text-cyan-50 m-2 rounded cursor-pointer;
-}
-
-button:hover {
-  @apply ring-4 ring-sky-800 ring-offset-2;
-}
-
-button:disabled {
-  @apply ring-4 ring-sky-800 ring-offset-2 bg-sky-300;
 }
 
 .input-group {

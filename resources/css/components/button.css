@@ -1,0 +1,11 @@
+button {
+    @apply p-2 bg-sky-500 text-cyan-50 m-2 rounded cursor-pointer;
+}
+
+button:hover {
+  @apply ring-4 ring-sky-800 ring-offset-2;
+}
+
+button:disabled {
+  @apply ring-4 ring-sky-800 ring-offset-2 bg-sky-300;
+}

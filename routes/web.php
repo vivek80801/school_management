@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Middleware\MenuMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,7 +13,7 @@ Route::post('/login', [AuthController::class, 'store']);
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'register_store']);
 
-Route::group(["middleware" => ["auth", MenuMiddleware::class], ], function () {
+Route::group(["middleware" => ["auth"], ], function () {
     Route::get("/dashboard", [DashboardController::class, "index"])->name("dashboard");
     Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 });

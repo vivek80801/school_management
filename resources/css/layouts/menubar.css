@@ -1,0 +1,22 @@
+.menubar {
+    @apply flex justify-start items-start flex-col fixed bg-gray-300 p-5 top-0 left-0 min-w-52 min-h-dvh;
+}
+
+.sub-menu > a {
+    @apply p-1;
+}
+
+.menubar > a,
+.menubar > div > a,
+.sub-menu > a
+{
+    @apply p-2 rounded block;
+}
+
+.menubar > a:hover,
+.menubar > div > a:hover,
+.menubar > a:active,
+.sub-menu > a:hover
+{
+    @apply bg-gray-200;
+}

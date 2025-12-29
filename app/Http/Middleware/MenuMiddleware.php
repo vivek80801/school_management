@@ -17,8 +17,9 @@ class MenuMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         MenuBuilderFacade::add('Home', route('home'))
-            ->add('Dashboard', route('dashboard')
-        );
+            ->add('Dashboard', route('dashboard'))
+            ->add('Hi', route('dashboard'), 'Home')
+        ;
 
         return $next($request);
     }

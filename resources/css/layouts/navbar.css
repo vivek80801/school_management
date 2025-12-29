@@ -1,0 +1,15 @@
+nav {
+    @apply flex justify-around items-center bg-gray-200 sticky top-0;
+}
+
+nav > ul {
+    @apply flex justify-center items-center;
+}
+
+nav > ul > li > a {
+    @apply p-2 capitalize rounded m-2;
+}
+
+nav > ul > li > a:hover, .active-nav {
+    @apply bg-gray-400 transition-all duration-500 ease-in;
+}
