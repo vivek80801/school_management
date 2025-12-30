@@ -16,6 +16,7 @@ class DataController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::index';
+
         return view($viewName);
     }
 
@@ -26,13 +27,14 @@ class DataController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::create';
+
         return view($viewName);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):void {}
+    public function store(Request $request): void {}
 
     /**
      * Show the specified resource.
@@ -41,6 +43,7 @@ class DataController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::show';
+
         return view($viewName);
     }
 
@@ -52,20 +55,22 @@ class DataController extends Controller
         /** @var view-string $viewName */
         $viewName = 'student::edit';
 
-        return view($viewName, compact("id"));
+        return view($viewName, compact('id'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id):void {
+    public function update(Request $request, $id): void
+    {
         dd($request);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id): void {
+    public function destroy($id): void
+    {
         dd($id);
     }
 

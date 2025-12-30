@@ -15,6 +15,7 @@ class StudentController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::index';
+
         return view($viewName);
     }
 
@@ -25,6 +26,7 @@ class StudentController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::create';
+
         return view($viewName);
     }
 
@@ -43,7 +45,8 @@ class StudentController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::show';
-        return view($viewName, compact("id"));
+
+        return view($viewName, compact('id'));
     }
 
     /**
@@ -53,7 +56,8 @@ class StudentController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'student::edit';
-        return view($viewName, compact("id"));
+
+        return view($viewName, compact('id'));
     }
 
     /**
