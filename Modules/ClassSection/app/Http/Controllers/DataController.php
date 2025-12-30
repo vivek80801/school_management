@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Student\Http\Controllers;
+namespace Modules\ClassSection\Http\Controllers;
 
 use App\Facades\MenuBuilderFacade;
 use App\Http\Controllers\Controller;
@@ -14,10 +14,10 @@ class DataController extends Controller
      */
     public function index(): View
     {
-        /** @var view-string $viewName */
-        $viewName = 'student::index';
+        /** @var view-string $viewNew */
+        $viewNew = 'classsection::index';
 
-        return view($viewName);
+        return view($viewNew);
     }
 
     /**
@@ -25,10 +25,10 @@ class DataController extends Controller
      */
     public function create(): View
     {
-        /** @var view-string $viewName */
-        $viewName = 'student::create';
+        /** @var view-string $viewNew */
+        $viewNew = 'classsection::create';
 
-        return view($viewName);
+        return view($viewNew);
     }
 
     /**
@@ -46,10 +46,10 @@ class DataController extends Controller
      */
     public function show($id): View
     {
-        /** @var view-string $viewName */
-        $viewName = 'student::show';
+        /** @var view-string $viewNew */
+        $viewNew = 'classsection::show';
 
-        return view($viewName, compact('id'));
+        return view($viewNew, compact('id'));
     }
 
     /**
@@ -59,10 +59,10 @@ class DataController extends Controller
      */
     public function edit($id): View
     {
-        /** @var view-string $viewName */
-        $viewName = 'student::edit';
+        /** @var view-string $viewNew */
+        $viewNew = 'classsection::edit';
 
-        return view($viewName, compact('id'));
+        return view($viewNew, compact('id'));
     }
 
     /**
@@ -87,6 +87,8 @@ class DataController extends Controller
 
     public function modify_menu(): void
     {
-        MenuBuilderFacade::add('Student', route('student.index'));
+        MenuBuilderFacade::add(
+            'Section', route('classsection.index')
+        );
     }
 }
