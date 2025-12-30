@@ -3,8 +3,6 @@
 
 @section("content")
     <x-classroom::layouts.master>
-        <h1>Hello World</h1>
-
-        <p>Module: {!! config('classroom.name') !!}</p>
+        <h1>Welcome to Class</h1>
     </x-classroom::layouts.master>
 @endsection

@@ -29,6 +29,32 @@
             @session("error")
                 window.toastr.error("{{$value}}");
             @endsession
+            const forms = [...document.querySelectorAll("form")];
+
+            forms.forEach(function (form) {
+                if(form) {
+                    form.addEventListener("submit", function(){
+                        const formSubmitBtn = form.querySelector("button[type='submit']");
+                        const formSubmitInput = form.querySelector("input[type='submit']");
+
+                        if(formSubmitBtn){
+                            formSubmitBtn.disabled = true;
+                            formSubmitBtn.innerHTML += `
+                                <div class="loader">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                </div>
+                            `;
+                        }else if(formSubmitInput) {
+                            formSubmitInput.disabled = true;
+                            formSubmitInput.innerHTML += `
+                                <div class="loader">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                </div>
+                            `;
+                        }
+                    })
+                }
+            })
         })
     </script>
     @stack("javascript")
