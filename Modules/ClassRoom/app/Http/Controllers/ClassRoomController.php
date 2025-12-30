@@ -5,6 +5,7 @@ namespace Modules\ClassRoom\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Modules\ClassRoom\Models\ClassRoom;
 
 class ClassRoomController extends Controller
 {
@@ -13,10 +14,11 @@ class ClassRoomController extends Controller
      */
     public function index(): View
     {
+        $class_rooms = ClassRoom::all();
         /** @var view-string $viewName */
         $viewName = 'classroom::index';
 
-        return view($viewName);
+        return view($viewName, compact("class_rooms"));
     }
 
     /**

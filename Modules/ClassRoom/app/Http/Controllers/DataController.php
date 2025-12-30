@@ -6,6 +6,7 @@ use App\Facades\MenuBuilderFacade;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Modules\ClassRoom\Models\ClassRoom;
 
 class DataController extends Controller
 {
