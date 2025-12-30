@@ -16,6 +16,7 @@ class DataController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'classroom::index';
+
         return view($viewName);
     }
 
@@ -26,6 +27,7 @@ class DataController extends Controller
     {
         /** @var view-string $viewName */
         $viewName = 'classroom::create';
+
         return view($viewName);
     }
 
@@ -39,29 +41,34 @@ class DataController extends Controller
 
     /**
      * Show the specified resource.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function show($id): View
     {
         /** @var view-string $viewName */
         $viewName = 'classroom::show';
+
         return view($viewName, compact($id));
     }
 
     /**
      * Show the form for editing the specified resource.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function edit($id): View
     {
         /** @var view-string $viewName */
         $viewName = 'classroom::edit';
+
         return view($viewName, compact($id));
     }
 
     /**
      * Update the specified resource in storage.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function update(Request $request, $id): void
     {
@@ -70,15 +77,16 @@ class DataController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param string $id
+     *
+     * @param  string  $id
      */
-    public function destroy($id):void
+    public function destroy($id): void
     {
         dd($id);
     }
 
     public function modify_menu(): void
     {
-        MenuBuilderFacade::add("ClassRoom", route("classroom.index"));
+        MenuBuilderFacade::add('ClassRoom', route('classroom.index'));
     }
 }

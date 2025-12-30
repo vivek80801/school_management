@@ -40,7 +40,8 @@ class StudentController extends Controller
 
     /**
      * Show the specified resource.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function show($id): View
     {
@@ -52,7 +53,8 @@ class StudentController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function edit($id): View
     {
@@ -64,7 +66,8 @@ class StudentController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function update(Request $request, $id): void
     {
@@ -73,7 +76,8 @@ class StudentController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param string $id
+     *
+     * @param  string  $id
      */
     public function destroy($id): void
     {
