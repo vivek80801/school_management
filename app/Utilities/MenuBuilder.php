@@ -56,6 +56,7 @@ class MenuBuilder
                     array_push($children, $check_menu);
                 }
             }
+            /** @phpstan-ignore-next-line */
             $menu->children = $children;
             if (! $menu->parent) {
                 array_push($new_menu, $menu);
