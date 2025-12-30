@@ -48,6 +48,12 @@ jobs:
           php artisan key:generate
           php artisan migrate
 
+      - name: Run Laravel Pint
+        run: ./vendor/bin/pint --test
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse
+
       - name: Run tests
         run: php artisan test
 

@@ -3,15 +3,15 @@
 namespace App\Utilities;
 
 use InvalidArgumentException;
-use App\Utilities\MenuItem;
 
-class MenuBuilder {
+class MenuBuilder
+{
     /** @var MenuItem[] */
     private array $menu = [];
 
     /**
-    * @param $menu MenuItem[]
-    */
+     * @param  $menu  MenuItem[]
+     */
     public function __construct(array $menu = [])
     {
         $this->menu = $menu;
@@ -24,6 +24,7 @@ class MenuBuilder {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -31,11 +32,11 @@ class MenuBuilder {
     {
         $menuItem = new MenuItem($name, $url, $parent ? $this->generateId($parent) : null);
 
-        if ($menuItem->parent && !$this->exists($menuItem->parent)) {
+        if ($menuItem->parent && ! $this->exists($menuItem->parent)) {
             throw new InvalidArgumentException("Parent menu '{$menuItem->parent}' does not exist.");
         }
 
-        if (!$this->exists($menuItem->id)) {
+        if (! $this->exists($menuItem->id)) {
             $this->menu[] = $menuItem;
         }
 
@@ -43,27 +44,24 @@ class MenuBuilder {
     }
 
     /**
-    * @return MenuItem[]
-    */
+     * @return MenuItem[]
+     */
     public function getMenu(): array
     {
         $new_menu = [];
-        foreach($this->menu as $menu)
-        {
+        foreach ($this->menu as $menu) {
             $children = [];
-            foreach($this->menu as $check_menu)
-            {
-                if($check_menu->parent && $menu->id == $check_menu->parent)
-                {
+            foreach ($this->menu as $check_menu) {
+                if ($check_menu->parent && $menu->id == $check_menu->parent) {
                     array_push($children, $check_menu);
                 }
             }
             $menu->children = $children;
-            if(!$menu->parent)
-            {
+            if (! $menu->parent) {
                 array_push($new_menu, $menu);
             }
         }
+
         return $new_menu;
     }
 

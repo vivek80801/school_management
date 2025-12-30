@@ -7,12 +7,10 @@ use App\Repositories\UserRepository;
 
 class UserService
 {
-    /**
-    * @param $data
-    */
-    public function create ($data): User
+    public function create($data): User
     {
-        $user_repository = new UserRepository();
+        $user_repository = new UserRepository;
+
         return $user_repository->create($data);
     }
 }

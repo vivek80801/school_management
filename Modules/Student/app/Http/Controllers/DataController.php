@@ -55,7 +55,8 @@ class DataController extends Controller
      */
     public function destroy($id) {}
 
-    public function modify_menu(){
-        MenuBuilderFacade::add("Student", route("student.index"));
+    public function modify_menu()
+    {
+        MenuBuilderFacade::add('Student', route('student.index'));
     }
 }

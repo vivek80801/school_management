@@ -4,7 +4,5 @@ namespace App\Utilities;
 
 class Utility
 {
-    public function index(): void
-    {
-    }
+    public function index(): void {}
 }

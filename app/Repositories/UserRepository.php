@@ -8,16 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
-    /**
-    * @param $data
-    */
     public function create($data): User
     {
-        $user = new User();
+        $user = new User;
         $user->name = $data->name;
         $user->email = $data->email;
         $user->password = Hash::make($data->password);
         $user->save();
+
         return $user;
     }
 

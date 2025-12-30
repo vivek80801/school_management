@@ -15,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->singleton("menubuilder", function ($app){
-            return new MenuBuilder();
+        $this->app->singleton('menubuilder', function ($app) {
+            return new MenuBuilder;
         });
     }
 

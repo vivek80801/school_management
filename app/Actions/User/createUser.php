@@ -7,12 +7,10 @@ use App\Services\UserService;
 
 class createUser
 {
-    /**
-    * @param $data
-    */
     public function handle($data): User
     {
-        $user_service = new UserService();
+        $user_service = new UserService;
+
         return $user_service->create($data);
     }
 }

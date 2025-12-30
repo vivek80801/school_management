@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
-        return view("dashboard");
+        return view('dashboard');
     }
 
     public function store(Request $request): void
@@ -17,4 +17,3 @@ class DashboardController extends Controller
         dd($request);
     }
 }
-

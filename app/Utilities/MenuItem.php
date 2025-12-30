@@ -2,10 +2,14 @@
 
 namespace App\Utilities;
 
-class MenuItem {
+class MenuItem
+{
     public string $id;
+
     public string $name;
+
     public ?string $parent;
+
     public string $url;
 
     public function __construct(string $name, string $url, ?string $parent = null)
