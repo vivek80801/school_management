@@ -1,0 +1,11 @@
+{
+    "name": "ClassSection",
+    "alias": "classsection",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ClassSection\\Providers\\ClassSectionServiceProvider"
+    ],
+    "files": []
+}

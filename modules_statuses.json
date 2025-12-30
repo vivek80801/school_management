@@ -1,4 +1,5 @@
 {
     "Student": true,
-    "ClassRoom": true
+    "ClassRoom": true,
+    "ClassSection": true
 }

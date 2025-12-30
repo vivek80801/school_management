@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/classsection",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ClassSection\\": "app/",
+            "Modules\\ClassSection\\Database\\Factories\\": "database/factories/",
+            "Modules\\ClassSection\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\ClassSection\\Tests\\": "tests/"
+        }
+    }
+}
