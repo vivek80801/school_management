@@ -1,12 +1,13 @@
 <?php
 
-namespace Modules\Student\Http\Controllers;
+namespace Modules\ClassRoom\Http\Controllers;
 
+use App\Facades\MenuBuilderFacade;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class DataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class StudentController extends Controller
     public function index(): View
     {
         /** @var view-string $viewName */
-        $viewName = 'student::index';
-
+        $viewName = 'classroom::index';
         return view($viewName);
     }
 
@@ -25,8 +25,7 @@ class StudentController extends Controller
     public function create(): View
     {
         /** @var view-string $viewName */
-        $viewName = 'student::create';
-
+        $viewName = 'classroom::create';
         return view($viewName);
     }
 
@@ -45,9 +44,8 @@ class StudentController extends Controller
     public function show($id): View
     {
         /** @var view-string $viewName */
-        $viewName = 'student::show';
-
-        return view($viewName, compact('id'));
+        $viewName = 'classroom::show';
+        return view($viewName, compact($id));
     }
 
     /**
@@ -57,9 +55,8 @@ class StudentController extends Controller
     public function edit($id): View
     {
         /** @var view-string $viewName */
-        $viewName = 'student::edit';
-
-        return view($viewName, compact('id'));
+        $viewName = 'classroom::edit';
+        return view($viewName, compact($id));
     }
 
     /**
@@ -75,8 +72,13 @@ class StudentController extends Controller
      * Remove the specified resource from storage.
      * @param string $id
      */
-    public function destroy($id): void
+    public function destroy($id):void
     {
         dd($id);
+    }
+
+    public function modify_menu(): void
+    {
+        MenuBuilderFacade::add("ClassRoom", route("classroom.index"));
     }
 }

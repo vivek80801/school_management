@@ -1,0 +1,16 @@
+<?php
+
+namespace Modules\ClassRoom\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class ClassRoomDatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        // $this->call([]);
+    }
+}
