@@ -7,7 +7,7 @@ if [ $? != 0 ]; then
 
     tmux new-session -d -s ${SESSION_NAME} -n docker
     tmux send-keys -t ${SESSION_NAME}:docker \
-        "notify-send 'starting docker compose'; ./start.sh" Enter
+        "notify-send 'starting docker compose'; ./scripts/start.sh" Enter
 
     tmux new-window -n editor -t ${SESSION_NAME}
     tmux send-keys -t ${SESSION_NAME}:editor "nvim ." Enter
