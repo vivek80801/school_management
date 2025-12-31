@@ -34,7 +34,7 @@ class AuthTest extends TestCase
 
     public function test_login(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $this->user['email'],
             'password' => $this->user['password'],
         ]);
@@ -46,7 +46,7 @@ class AuthTest extends TestCase
 
     public function test_login_validation_when_email_is_empty(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => '',
             'password' => $this->user['password'],
         ]);
@@ -56,7 +56,7 @@ class AuthTest extends TestCase
 
     public function test_login_validation_when_password_is_empty(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => $this->user['email'],
             'password' => '',
         ]);
@@ -66,7 +66,7 @@ class AuthTest extends TestCase
 
     public function test_login_validation_when_email_and_password_is_empty(): void
     {
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => '',
             'password' => '',
         ]);
