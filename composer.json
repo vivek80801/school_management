@@ -72,6 +72,9 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-install-cmd": [
+          "sh scripts/pre-commit.sh"
         ]
     },
     "extra": {

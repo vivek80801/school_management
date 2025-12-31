@@ -2,8 +2,9 @@
 
 namespace Modules\ClassRoom\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 // use Modules\ClassRoom\Database\Factories\ClassRoomFactory;
 
 class ClassRoom extends Model

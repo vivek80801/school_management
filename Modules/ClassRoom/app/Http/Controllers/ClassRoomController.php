@@ -18,7 +18,7 @@ class ClassRoomController extends Controller
         /** @var view-string $viewName */
         $viewName = 'classroom::index';
 
-        return view($viewName, compact("class_rooms"));
+        return view($viewName, compact('class_rooms'));
     }
 
     /**

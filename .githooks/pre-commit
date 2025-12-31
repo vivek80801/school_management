@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./vendor/bin/pint --test
+./vendor/bin/phpstan
+
