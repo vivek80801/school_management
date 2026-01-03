@@ -4,17 +4,22 @@ namespace Modules\ClassRoom\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Modules\ClassRoom\Models\ClassRoom;
+use Modules\ClassRoom\Actions\CreateClassRoom;
+use Modules\ClassRoom\Actions\GetClassRoom;
+use Modules\ClassRoom\Dtos\ClassRoomDto;
+use Modules\ClassRoom\Http\Requests\ClassRoomRequest;
 
 class ClassRoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(GetClassRoom $getClassRoom): View
     {
-        $class_rooms = ClassRoom::all();
+        $class_rooms = $getClassRoom->handle();
+
         /** @var view-string $viewName */
         $viewName = 'classroom::index';
 
@@ -35,9 +40,15 @@ class ClassRoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): void
+    public function store(ClassRoomRequest $request, CreateClassRoom $createClassRoom): RedirectResponse
     {
-        dd($request);
+        $class_room_dto = new ClassRoomDto(
+            name: $request->validated()['class_name'],
+        );
+
+        $createClassRoom->handle($class_room_dto);
+
+        return redirect()->back()->with('success', 'Class room Created Successfully');
     }
 
     /**

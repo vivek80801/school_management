@@ -4,6 +4,8 @@ namespace Modules\ClassRoom\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\ClassRoom\Repositories\ClassRoomRepository;
+use Modules\ClassRoom\Repositories\Interfaces\ClassRoomRepositoryInterface;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -36,6 +38,8 @@ class ClassRoomServiceProvider extends ServiceProvider
     {
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind(ClassRoomRepositoryInterface::class, ClassRoomRepository::class);
     }
 
     /**

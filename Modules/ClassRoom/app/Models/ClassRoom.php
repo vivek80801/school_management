@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 // use Modules\ClassRoom\Database\Factories\ClassRoomFactory;
 
+/**
+ * @property string $name
+ */
 class ClassRoom extends Model
 {
     use HasFactory;

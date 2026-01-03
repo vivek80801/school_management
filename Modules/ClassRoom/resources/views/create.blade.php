@@ -11,22 +11,11 @@
                 <label for="class_name">Name Of Class: </label>
                 <input type="text" name="class_name" value="{{old('class_name')}}"  />
             </div>
-            @error ("email")
-                <span class="text-red-500">{{$message}}</span>
-            @enderror
-            <div class="form-group">
-                <label for="password">Password: </label>
-                <div class="input-group">
-                    <input type="password" id="password" name="password"  />
-                    <i class="fa-solid fa-eye" id="eye"></i>
-                    <i class="fa-solid fa-eye-slash" style="display: none;" id="eye-close"></i>
-                </div>
-            </div>
-            @error ("password")
+            @error ("class_name")
                 <span class="text-red-500">{{$message}}</span>
             @enderror
             <br />
-            <button type="submit">Login</button>
+            <button type="submit">Create Class</button>
         </form>
             <a href="{{route('classroom.index')}}">View Class</a>
         </div>
