@@ -5,11 +5,14 @@ namespace Modules\ClassRoom\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Modules\ClassRoom\Actions\CreateClassRoom;
+use Modules\ClassRoom\Actions\EditClassRoom;
 use Modules\ClassRoom\Actions\GetClassRoom;
 use Modules\ClassRoom\Dtos\ClassRoomDto;
 use Modules\ClassRoom\Http\Requests\ClassRoomRequest;
+use Modules\ClassRoom\Models\ClassRoom;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class ClassRoomController extends Controller
 {
@@ -19,11 +22,12 @@ class ClassRoomController extends Controller
     public function index(GetClassRoom $getClassRoom): View
     {
         $class_rooms = $getClassRoom->handle();
+        $data_table_class_room = DataTables::of($class_rooms)->make(true);
 
         /** @var view-string $viewName */
         $viewName = 'classroom::index';
 
-        return view($viewName, compact('class_rooms'));
+        return view($viewName, compact('class_rooms', 'class_rooms'));
     }
 
     /**
@@ -40,7 +44,11 @@ class ClassRoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClassRoomRequest $request, CreateClassRoom $createClassRoom): RedirectResponse
+    public function store(
+        ClassRoomRequest $request,
+        CreateClassRoom $createClassRoom
+    ):
+    RedirectResponse
     {
         $class_room_dto = new ClassRoomDto(
             name: $request->validated()['class_name'],
@@ -48,7 +56,12 @@ class ClassRoomController extends Controller
 
         $createClassRoom->handle($class_room_dto);
 
-        return redirect()->back()->with('success', 'Class room Created Successfully');
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Class room Created Successfully'
+            );
     }
 
     /**
@@ -66,25 +79,37 @@ class ClassRoomController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  string  $id
      */
-    public function edit($id): View
+    public function edit(ClassRoom $classroom): View
     {
         /** @var view-string $viewName */
         $viewName = 'classroom::edit';
 
-        return view($viewName, compact('id'));
+        return view($viewName, compact('classroom'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  string  $id
      */
-    public function update(Request $request, $id): void
+    public function update(
+        ClassRoomRequest $request,
+        ClassRoom $classroom,
+        EditClassRoom $edit_class_room
+    ):
+    RedirectResponse
     {
-        dd($request, $id);
+        $class_room_dto = new ClassRoomDto(
+            name: $request->validated()['class_name'],
+        );
+
+        $edit_class_room->handle($class_room_dto, $classroom);
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Class room Updated Successfully'
+            );
     }
 
     /**

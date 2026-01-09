@@ -23,9 +23,16 @@ class ClassRoomRepository implements ClassRoomRepositoryInterface
         return $class_room;
     }
 
-    public function updateClassRoom($id): ClassRoom
+    public function updateClassRoom(
+        ClassRoomDto $data,
+        ClassRoom $class_room
+    )
+    : ClassRoom
     {
-        throw new \Exception('Not implemented');
+        $class_room->name = $data->name;
+        $class_room->save();
+
+        return $class_room;
     }
 
     public function deleteClassRoom($id): ClassRoom

@@ -22,4 +22,15 @@ class ClassRoomService
 
         return $class_room_repository->getClassRoom();
     }
+
+    public function edit_class_room(
+        ClassRoomDto $data,
+        ClassRoom $class_room
+    )
+    : ClassRoom
+    {
+        $class_room_repository = new ClassRoomRepository;
+
+        return $class_room_repository->updateClassRoom($data, $class_room);
+    }
 }

@@ -10,7 +10,8 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "nwidart/laravel-modules": "^12.0",
-        "yajra/laravel-datatables": "^12.0"
+        "yajra/laravel-datatables": "^12.0",
+        "yajra/laravel-datatables-html": "^12.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",

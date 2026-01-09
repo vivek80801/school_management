@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1fe8bad421c202532fcde0389f5803db",
+    "content-hash": "999310d7b4b03d7efab11f83b3c01ff3",
     "packages": [
         {
             "name": "brick/math",
@@ -10223,16 +10223,16 @@
         },
         {
             "name": "vivek/command-pack",
-            "version": "v2.0.3",
+            "version": "v2.0.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vivek80801/command-pack.git",
-                "reference": "2530441e2697f9325f54775bbd74e1104adc17f2"
+                "reference": "d978e9b36eff13212f1286563f17b7f7c40e1539"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vivek80801/command-pack/zipball/2530441e2697f9325f54775bbd74e1104adc17f2",
-                "reference": "2530441e2697f9325f54775bbd74e1104adc17f2",
+                "url": "https://api.github.com/repos/vivek80801/command-pack/zipball/d978e9b36eff13212f1286563f17b7f7c40e1539",
+                "reference": "d978e9b36eff13212f1286563f17b7f7c40e1539",
                 "shasum": ""
             },
             "require": {
@@ -10257,10 +10257,10 @@
             ],
             "description": "Laravel command pack",
             "support": {
-                "source": "https://github.com/vivek80801/command-pack/tree/v2.0.3",
+                "source": "https://github.com/vivek80801/command-pack/tree/v2.0.40",
                 "issues": "https://github.com/vivek80801/command-pack/issues"
             },
-            "time": "2025-12-28T02:33:17+00:00"
+            "time": "2026-01-04T00:52:56+00:00"
         }
     ],
     "aliases": [],
