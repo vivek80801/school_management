@@ -13,7 +13,6 @@ use Modules\ClassRoom\Http\Requests\ClassRoomRequest;
 use Modules\ClassRoom\Models\ClassRoom;
 use Yajra\DataTables\Facades\DataTables;
 
-
 class ClassRoomController extends Controller
 {
     /**
@@ -47,9 +46,7 @@ class ClassRoomController extends Controller
     public function store(
         ClassRoomRequest $request,
         CreateClassRoom $createClassRoom
-    ):
-    RedirectResponse
-    {
+    ): RedirectResponse {
         $class_room_dto = new ClassRoomDto(
             name: $request->validated()['class_name'],
         );
@@ -95,9 +92,7 @@ class ClassRoomController extends Controller
         ClassRoomRequest $request,
         ClassRoom $classroom,
         EditClassRoom $edit_class_room
-    ):
-    RedirectResponse
-    {
+    ): RedirectResponse {
         $class_room_dto = new ClassRoomDto(
             name: $request->validated()['class_name'],
         );

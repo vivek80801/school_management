@@ -1,6 +1,6 @@
 <?php
 
-namespace  Modules\ClassRoom\Actions;
+namespace Modules\ClassRoom\Actions;
 
 use Modules\ClassRoom\Dtos\ClassRoomDto;
 use Modules\ClassRoom\Models\ClassRoom;
@@ -11,10 +11,9 @@ class EditClassRoom
     public function handle(
         ClassRoomDto $data,
         ClassRoom $class_room
-    )
-    : ClassRoom
-    {
+    ): ClassRoom {
         $class_room_service = new ClassRoomService;
+
         return $class_room_service->edit_class_room($data, $class_room);
     }
 }

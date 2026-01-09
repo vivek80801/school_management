@@ -26,9 +26,7 @@ class ClassRoomRepository implements ClassRoomRepositoryInterface
     public function updateClassRoom(
         ClassRoomDto $data,
         ClassRoom $class_room
-    )
-    : ClassRoom
-    {
+    ): ClassRoom {
         $class_room->name = $data->name;
         $class_room->save();
 
