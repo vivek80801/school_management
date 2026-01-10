@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('father_work', 255);
             $table->string('mother_work', 255);
             $table->integer('roll_no');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('class_room_id')->constrained('class_rooms')->onDelete('cascade');
-            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            // $table->foreignId('class_room_id')->constrained('class_rooms')->onDelete('cascade');
+            // $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->timestamps();
         });
     }

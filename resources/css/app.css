@@ -55,6 +55,10 @@ input {
     animation: rotate 500ms linear infinite;
 }
 
+div.dt-container {
+    position: static !important;
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);

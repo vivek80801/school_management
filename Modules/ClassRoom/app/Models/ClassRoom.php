@@ -4,6 +4,7 @@ namespace Modules\ClassRoom\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\ClassRoom\Database\Factories\ClassRoomFactory;
 
 // use Modules\ClassRoom\Database\Factories\ClassRoomFactory;
 
@@ -23,4 +24,9 @@ class ClassRoom extends Model
     // {
     //     // return ClassRoomFactory::new();
     // }
+    //
+    protected static function newFactory(): ClassRoomFactory
+    {
+        return ClassRoomFactory::new();
+    }
 }

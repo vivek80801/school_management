@@ -22,11 +22,11 @@
                                     <button><a href="{{route('classroom.edit', $classRoom->id)}}">Edit</a></button>
                                 </td>
                                 <td>
-                                    <form action="{{route('classroom.destroy', $classRoom->id)}}" method="POST">
+                                    <form class="!m-0 !p-0" action="{{route('classroom.destroy', $classRoom->id)}}" method="POST">
                                         @csrf
                                         @method("delete")
                                         <input type="hidden" name="id" value="{{ $classRoom->id }}" />
-                                        <button type="submit">Delete</button>
+                                        <button class="!bg-red-500 hover:!ring-red-800 disabled:!ring-red-800" type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>
