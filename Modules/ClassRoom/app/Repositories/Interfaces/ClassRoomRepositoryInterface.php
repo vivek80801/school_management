@@ -12,8 +12,7 @@ interface ClassRoomRepositoryInterface
 
     public function createClassRoom(ClassRoomDto $data): ClassRoom;
 
-    public function updateClassRoom(ClassRoomDto $class_room_dto, ClassRoom $class_room): ClassRoom;
+    public function updateClassRoom(ClassRoomDto $classRoomDto, ClassRoom $classRoom): ClassRoom;
 
-    /** @param string $id */
-    public function deleteClassRoom($id): ClassRoom;
+    public function deleteClassRoom(ClassRoom $classRoom): void;
 }

@@ -21,8 +21,8 @@ class MenuMiddleware
             ->add('Dashboard', route('dashboard'))
             ->add('Hi', route('dashboard'), 'Home');
 
-        $all_modules = new ModuleUtility;
-        $all_modules->getModuleData('modify_menu');
+        $allModules = new ModuleUtility;
+        $allModules->getModuleData('modify_menu');
 
         return $next($request);
     }

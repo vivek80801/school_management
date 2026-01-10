@@ -2,19 +2,17 @@
 
 namespace Modules\ClassRoom\Actions;
 
-use Modules\ClassRoom\Dtos\ClassRoomDto;
 use Modules\ClassRoom\Models\ClassRoom;
 use Modules\ClassRoom\Services\ClassRoomService;
 
-class CreateClassRoom
+class DeleteClassRoom
 {
     public function __construct(
         private ClassRoomService $classRoomService
     ) {}
 
-    public function handle(ClassRoomDto $data): ClassRoom
+    public function handle(ClassRoom $classRoom): void
     {
-
-        return $this->classRoomService->createClassRoom($data);
+        $this->classRoomService->deleteClassRoom($classRoom);
     }
 }

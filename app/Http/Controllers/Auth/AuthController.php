@@ -31,7 +31,7 @@ class AuthController extends Controller
         }
     }
 
-    public function register_store(RegisterRequest $request, createUser $createUser): RedirectResponse
+    public function registerStore(RegisterRequest $request, createUser $createUser): RedirectResponse
     {
         $createUser->handle((object) $request->validated());
 

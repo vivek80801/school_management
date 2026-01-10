@@ -4,8 +4,10 @@ namespace Modules\ClassRoom\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\ClassRoom\Actions\CreateClassRoom;
+use Modules\ClassRoom\Actions\DeleteClassRoom;
 use Modules\ClassRoom\Actions\EditClassRoom;
 use Modules\ClassRoom\Actions\GetClassRoom;
 use Modules\ClassRoom\Dtos\ClassRoomDto;
@@ -18,15 +20,18 @@ class ClassRoomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(GetClassRoom $getClassRoom): View
+    public function index(GetClassRoom $getClassRoom): View|JsonResponse
     {
-        $class_rooms = $getClassRoom->handle();
-        $data_table_class_room = DataTables::of($class_rooms)->make(true);
+        $classRooms = $getClassRoom->handle();
+
+        if (request()->ajax()) {
+            return DataTables::of($classRooms)->make(true);
+        }
 
         /** @var view-string $viewName */
         $viewName = 'classroom::index';
 
-        return view($viewName, compact('class_rooms', 'class_rooms'));
+        return view($viewName, compact('classRooms'));
     }
 
     /**
@@ -47,11 +52,11 @@ class ClassRoomController extends Controller
         ClassRoomRequest $request,
         CreateClassRoom $createClassRoom
     ): RedirectResponse {
-        $class_room_dto = new ClassRoomDto(
+        $classRoomDto = new ClassRoomDto(
             name: $request->validated()['class_name'],
         );
 
-        $createClassRoom->handle($class_room_dto);
+        $createClassRoom->handle($classRoomDto);
 
         return redirect()
             ->back()
@@ -91,13 +96,13 @@ class ClassRoomController extends Controller
     public function update(
         ClassRoomRequest $request,
         ClassRoom $classroom,
-        EditClassRoom $edit_class_room
+        EditClassRoom $editClassRoom
     ): RedirectResponse {
-        $class_room_dto = new ClassRoomDto(
+        $classRoomDto = new ClassRoomDto(
             name: $request->validated()['class_name'],
         );
 
-        $edit_class_room->handle($class_room_dto, $classroom);
+        $editClassRoom->handle($classRoomDto, $classroom);
 
         return redirect()
             ->back()
@@ -109,11 +114,16 @@ class ClassRoomController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  string  $id
      */
-    public function destroy($id): void
+    public function destroy(ClassRoom $classroom, DeleteClassRoom $deleteClassRoom): RedirectResponse
     {
-        dd($id);
+        $deleteClassRoom->handle($classroom);
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Class room Deleted Successfully'
+            );
     }
 }

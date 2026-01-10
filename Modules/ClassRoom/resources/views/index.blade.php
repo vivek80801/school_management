@@ -5,7 +5,7 @@
     <x-classroom::layouts.master>
         <h1>Welcome to Class</h1>
         <div class="card">
-            @if (count($class_rooms) > 0)
+            @if (count($classRooms) > 0)
                 <table id="class_room_table">
                     <thead>
                         <tr>
@@ -15,13 +15,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($class_rooms as $class_room)
+                        @foreach($classRooms as $classRoom)
                             <tr>
-                                <td>{{$class_room->name}}</td>
+                                <td>{{$classRoom->name}}</td>
                                 <td>
-                                    <button><a href="{{route('classroom.edit', $class_room->id)}}">Edit</a></button>
+                                    <button><a href="{{route('classroom.edit', $classRoom->id)}}">Edit</a></button>
                                 </td>
-                                <td><button>Delete</button></td>
+                                <td>
+                                    <form action="{{route('classroom.destroy', $classRoom->id)}}" method="POST">
+                                        @csrf
+                                        @method("delete")
+                                        <input type="hidden" name="id" value="{{ $classRoom->id }}" />
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

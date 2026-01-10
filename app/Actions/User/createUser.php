@@ -9,8 +9,8 @@ class createUser
 {
     public function handle($data): User
     {
-        $user_service = new UserService;
+        $userService = new UserService;
 
-        return $user_service->create($data);
+        return $userService->create($data);
     }
 }

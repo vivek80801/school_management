@@ -7,10 +7,13 @@ use Modules\ClassRoom\Services\ClassRoomService;
 
 class GetClassRoom
 {
+    public function __construct(
+        private ClassRoomService $classRoomService
+    ) {}
+
     public function handle(): Collection
     {
-        $class_room_service = new ClassRoomService;
 
-        return $class_room_service->get_class_room();
+        return $this->classRoomService->getClassRoom();
     }
 }

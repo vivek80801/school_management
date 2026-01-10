@@ -5,30 +5,33 @@ namespace Modules\ClassRoom\Services;
 use Illuminate\Support\Collection;
 use Modules\ClassRoom\Dtos\ClassRoomDto;
 use Modules\ClassRoom\Models\ClassRoom;
-use Modules\ClassRoom\Repositories\ClassRoomRepository;
+use Modules\ClassRoom\Repositories\Interfaces\ClassRoomRepositoryInterface;
 
 class ClassRoomService
 {
-    public function create_class_room(ClassRoomDto $data): ClassRoom
-    {
-        $class_room_repository = new ClassRoomRepository;
+    public function __construct(
+        private ClassRoomRepositoryInterface $classRoomRepository
+    ) {}
 
-        return $class_room_repository->createClassRoom($data);
+    public function createClassRoom(ClassRoomDto $data): ClassRoom
+    {
+        return $this->classRoomRepository->createClassRoom($data);
     }
 
-    public function get_class_room(): Collection
+    public function getClassRoom(): Collection
     {
-        $class_room_repository = new ClassRoomRepository;
-
-        return $class_room_repository->getClassRoom();
+        return $this->classRoomRepository->getClassRoom();
     }
 
-    public function edit_class_room(
+    public function editClassRoom(
         ClassRoomDto $data,
-        ClassRoom $class_room
+        ClassRoom $classRoom
     ): ClassRoom {
-        $class_room_repository = new ClassRoomRepository;
+        return $this->classRoomRepository->updateClassRoom($data, $classRoom);
+    }
 
-        return $class_room_repository->updateClassRoom($data, $class_room);
+    public function deleteClassRoom(ClassRoom $classRoom): void
+    {
+        $this->classRoomRepository->deleteClassRoom($classRoom);
     }
 }

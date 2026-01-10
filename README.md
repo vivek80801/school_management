@@ -11,7 +11,10 @@ There are some requirements for this project
 ## Setup
 
 ```bash
-    git clone https://github.coom/vivek80801/school_management; cd school_management; composer install; npm install
-    # start docker compose
-    ./start.sh
+    git clone https://github.com/vivek80801/school_management
+    cd school_management
+    composer install
+    npm install
+    npm run build
+    ./scripts/start.sh
 ```

@@ -8,12 +8,15 @@ use Modules\ClassRoom\Services\ClassRoomService;
 
 class EditClassRoom
 {
+    public function __construct(
+        private ClassRoomService $classRoomService
+    ) {}
+
     public function handle(
         ClassRoomDto $data,
-        ClassRoom $class_room
+        ClassRoom $classRoom
     ): ClassRoom {
-        $class_room_service = new ClassRoomService;
 
-        return $class_room_service->edit_class_room($data, $class_room);
+        return $this->classRoomService->editClassRoom($data, $classRoom);
     }
 }

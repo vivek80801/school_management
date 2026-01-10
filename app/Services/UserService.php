@@ -9,8 +9,8 @@ class UserService
 {
     public function create($data): User
     {
-        $user_repository = new UserRepository;
+        $userRepository = new UserRepository;
 
-        return $user_repository->create($data);
+        return $userRepository->create($data);
     }
 }
