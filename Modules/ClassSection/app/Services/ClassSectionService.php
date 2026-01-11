@@ -13,13 +13,18 @@ class ClassSectionService
         private ClassSectionRepository $classSectionRepository
     ) {}
 
+    public function get(): Collection
+    {
+        return $this->classSectionRepository->get();
+    }
+
     public function create(ClassSectionDto $data): ClassSection
     {
         return $this->classSectionRepository->create($data);
     }
 
-    public function get(): Collection
+    public function edit(ClassSectionDto $data, ClassSection $classSection): ClassSection
     {
-        return $this->classSectionRepository->get();
+        return $this->classSectionRepository->update($data, $classSection);
     }
 }

@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Modules\ClassSection\Actions\CreateClassSection;
+use Modules\ClassSection\Actions\EditClassSection;
 use Modules\ClassSection\Actions\GetClassSection;
 use Modules\ClassSection\Dtos\ClassSectionDto;
 use Modules\ClassSection\Http\Requests\ClassSectionRequest;
+use Modules\ClassSection\Models\ClassSection;
 use Yajra\DataTables\Facades\DataTables;
 
 class ClassSectionController extends Controller
@@ -60,7 +61,7 @@ class ClassSectionController extends Controller
             ->back()
             ->with(
                 'success',
-                'Class room Created Successfully'
+                'Section Created Successfully'
             );
     }
 
@@ -79,25 +80,36 @@ class ClassSectionController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  string  $id
      */
-    public function edit($id): View
-    {
+    public function edit(
+        ClassSection $classsection
+    ): View {
         /** @var view-string $viewNew */
         $viewNew = 'classsection::edit';
 
-        return view($viewNew, compact('id'));
+        return view($viewNew, compact('classsection'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  string  $id
      */
-    public function update(Request $request, $id): void
-    {
-        dd($request, $id);
+    public function update(
+        ClassSectionRequest $request,
+        ClassSection $classsection,
+        EditClassSection $editClassSection
+    ): RedirectResponse {
+        $classSectionDto = new ClassSectionDto(
+            name: $request->validated()['name']
+        );
+
+        $editClassSection->handle($classSectionDto, $classsection);
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Section Updated Successfully'
+            );
     }
 
     /**

@@ -9,6 +9,11 @@ use Modules\ClassSection\Repositories\Interfaces\ClassSectionRepositoryInterface
 
 class ClassSectionRepository implements ClassSectionRepositoryInterface
 {
+    public function get(): Collection
+    {
+        return ClassSection::all();
+    }
+
     public function create(ClassSectionDto $data): ClassSection
     {
         $classSection = new ClassSection;
@@ -18,8 +23,13 @@ class ClassSectionRepository implements ClassSectionRepositoryInterface
         return $classSection;
     }
 
-    public function get(): Collection
-    {
-        return ClassSection::all();
+    public function update(
+        ClassSectionDto $data,
+        ClassSection $classSection
+    ): ClassSection {
+        $classSection->name = $data->name;
+        $classSection->save();
+
+        return $classSection;
     }
 }

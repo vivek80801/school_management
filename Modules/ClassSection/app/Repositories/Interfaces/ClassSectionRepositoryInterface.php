@@ -8,7 +8,9 @@ use Modules\ClassSection\Models\ClassSection;
 
 interface ClassSectionRepositoryInterface
 {
+    public function get(): Collection;
+
     public function create(ClassSectionDto $data): ClassSection;
 
-    public function get(): Collection;
+    public function update(ClassSectionDto $data, ClassSection $classSection): ClassSection;
 }

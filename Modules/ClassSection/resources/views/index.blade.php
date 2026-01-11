@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "section")
+@section("title", "Section")
 
 @section("content")
     <x-classsection::layouts.master>
