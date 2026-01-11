@@ -27,4 +27,9 @@ class ClassSectionService
     {
         return $this->classSectionRepository->update($data, $classSection);
     }
+
+    public function delete(ClassSection $classSection): void
+    {
+        $this->classSectionRepository->delete($classSection);
+    }
 }

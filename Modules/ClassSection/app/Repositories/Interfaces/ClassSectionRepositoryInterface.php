@@ -13,4 +13,6 @@ interface ClassSectionRepositoryInterface
     public function create(ClassSectionDto $data): ClassSection;
 
     public function update(ClassSectionDto $data, ClassSection $classSection): ClassSection;
+
+    public function delete(ClassSection $classSection): void;
 }

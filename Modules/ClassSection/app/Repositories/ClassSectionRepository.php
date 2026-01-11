@@ -32,4 +32,9 @@ class ClassSectionRepository implements ClassSectionRepositoryInterface
 
         return $classSection;
     }
+
+    public function delete(ClassSection $classSection): void
+    {
+        $classSection->delete();
+    }
 }

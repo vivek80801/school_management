@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\ClassSection\Actions\CreateClassSection;
+use Modules\ClassSection\Actions\DeleteClassSection;
 use Modules\ClassSection\Actions\EditClassSection;
 use Modules\ClassSection\Actions\GetClassSection;
 use Modules\ClassSection\Dtos\ClassSectionDto;
@@ -114,11 +115,18 @@ class ClassSectionController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  string  $id
      */
-    public function destroy($id): void
-    {
-        dd($id);
+    public function destroy(
+        ClassSection $classsection,
+        DeleteClassSection $deleteClassSection
+    ): RedirectResponse {
+        $deleteClassSection->handle($classsection);
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Section Deleted Successfully'
+            );
     }
 }
