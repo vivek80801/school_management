@@ -4,6 +4,7 @@ namespace Modules\ClassSection\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\ClassSection\Database\Factories\ClassSectionFactory;
 
 // use Modules\ClassSection\Database\Factories\ClassSectionFactory;
 
@@ -23,4 +24,9 @@ class ClassSection extends Model
     // {
     //     // return ClassSectionFactory::new();
     // }
+    protected static function newFactory(): ClassSectionFactory
+    {
+        return ClassSectionFactory::new();
+
+    }
 }
