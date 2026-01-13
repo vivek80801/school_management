@@ -41,7 +41,7 @@ class ClassSectionTest extends TestCase
     public function test_update_class_sections(): void
     {
         $classSection = [
-            'name' => 'B'
+            'name' => 'B',
         ];
         $classRoom = ClassSection::factory()->create();
         $this->actingAs($this->user)

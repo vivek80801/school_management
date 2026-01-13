@@ -24,4 +24,3 @@ class ClassSectionFactory extends Factory
         ];
     }
 }
-
