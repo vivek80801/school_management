@@ -8,12 +8,17 @@
 Make sure you fork the repo
 
 ```sh
-git clone https://github.com/your username/school_management && cd school_management && composer install && npm install  && git checkout -b feature
-```
-```sh
-git clone https://github.com/your username/school_management
+git clone https://github.com/username/school_management
 cd school_management
+composer install
+npm install
 git checkout -b feature
+######### OR ############
+git checkout -b fix
+#########################
+composer install
+npm install
+npm run build
 ```
 
 if you have `tmux` and `neovim` (`nvim`) then
@@ -21,12 +26,19 @@ if you don't use `neovim` editor. feel free to use your editor . like you can ch
 
 ```sh
 # script for creating window
+# everything is setup for you in tmux session.
 ./tmux.sh
 ```
 
 you can install tmux on your own. otherwise
 
+start the backend server
 ```sh
 # start docker compose
-./start.sh
+./scripts/start.sh
+```
+
+start the vite dev server
+```sh
+npm run dev
 ```
