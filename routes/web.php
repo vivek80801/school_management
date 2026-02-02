@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,4 +18,25 @@ Route::post('/register', [AuthController::class, 'registerStore']);
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::group([
+        'prefix' => 'roles',
+        'as' => 'roles.',
+        'controller' => RoleController::class,
+    ], function () {
+        Route::resource('', RoleController::class);
+        Route::get('/permission/{role}', 'permissions')->name('permissions');
+        Route::post('/permission', 'assignPermissions')->name('assignpermission');
+    });
+
+    Route::group([
+        'prefix' => 'users',
+        'controller' => UserController::class,
+        'as' => 'users.',
+    ], function () {
+        Route::resource('', UserController::class);
+        Route::get('/roles/{user}', 'roles')->name('roles');
+        Route::get('/assign/role/{user}', 'assignRole')->name('roles.assign');
+        Route::post('/assign/role', 'roleAssign')->name('roles.roleassign');
+    });
 });

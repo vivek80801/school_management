@@ -1,31 +1,35 @@
 @extends("layouts.app")
-@section("title", "Class")
+@section("title", "Roles")
 
 @section("content")
-    <x-classroom::layouts.master>
-        <h1>Welcome to Class</h1>
+    <section>
+        <h1>Welcome to Role</h1>
         <div class="card">
-            @if (count($classRooms) > 0)
-                <table id="class_room_table">
+            @if (count($roles) > 0)
+                <table id="role_table">
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Permissions</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($classRooms as $classRoom)
+                        @foreach($roles as $role)
                             <tr>
-                                <td>{{$classRoom->name}}</td>
+                                <td>{{$role->name}}</td>
                                 <td>
-                                    <button><a href="{{route('classroom.edit', $classRoom->id)}}">Edit</a></button>
+                                    <button><a href="{{route('roles.permissions', $role->id)}}">Permission</a></button>
                                 </td>
                                 <td>
-                                    <form class="!m-0 !p-0" action="{{route('classroom.destroy', $classRoom->id)}}" method="POST">
+                                    <button><a href="{{route('roles.edit', $role->id)}}">Edit</a></button>
+                                </td>
+                                <td>
+                                    <form class="!m-0 !p-0" action="{{route('roles.destroy', $role->id)}}" method="POST">
                                         @csrf
                                         @method("delete")
-                                        <input type="hidden" name="id" value="{{ $classRoom->id }}" />
+                                        <input type="hidden" name="id" value="{{ $role->id }}" />
                                         <button class="!bg-red-500 hover:!ring-red-800 disabled:!ring-red-800" type="submit">Delete</button>
                                     </form>
                                 </td>
@@ -34,18 +38,18 @@
                     </tbody>
                 </table>
             @else
-                <h4>No Class Found</h4>
+                <h4>No Role Found</h4>
             @endif
-            <a href="{{route('classroom.create')}}">Create Class</a>
+            <a href="{{route('roles.create')}}">Create Role</a>
         </div>
-    </x-classroom::layouts.master>
+    </section>
 @endsection
 
 @push("javascript")
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             $(document).ready(function () {
-                $('#class_room_table').DataTable();
+                $('#role_table').DataTable();
             });
         })
     </script>

@@ -19,7 +19,9 @@ class MenuMiddleware
     {
         MenuBuilderFacade::add('Home', route('home'))
             ->add('Dashboard', route('dashboard'))
-            ->add('Hi', route('dashboard'), 'Home');
+            ->add('Hi', route('dashboard'), 'Home')
+            ->add('Roles', route('roles.index'))
+            ->add('Users', route('users.index'));
 
         $allModules = new ModuleUtility;
         $allModules->getModuleData('modify_menu');
