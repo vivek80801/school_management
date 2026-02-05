@@ -24,19 +24,24 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'roles.',
         'controller' => RoleController::class,
     ], function () {
-        Route::resource('', RoleController::class);
         Route::get('/permission/{role}', 'permissions')->name('permissions');
         Route::post('/permission', 'assignPermissions')->name('assignpermission');
     });
 
+    Route::resource('roles', RoleController::class);
     Route::group([
         'prefix' => 'users',
         'controller' => UserController::class,
         'as' => 'users.',
     ], function () {
-        Route::resource('', UserController::class);
         Route::get('/roles/{user}', 'roles')->name('roles');
         Route::get('/assign/role/{user}', 'assignRole')->name('roles.assign');
         Route::post('/assign/role', 'roleAssign')->name('roles.roleassign');
     });
+
+    Route::resource('users', UserController::class);
+});
+
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
 });
