@@ -17,8 +17,7 @@ class UserController extends Controller
      */
     public function index(): View|JsonResponse
     {
-        if(!auth()->user()->can("user.read"))
-        {
+        if (! auth()->user()->can('user.read')) {
             return abort(403);
         }
 
@@ -38,8 +37,7 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        if(!auth()->user()->can("user.create"))
-        {
+        if (! auth()->user()->can('user.create')) {
             return abort(403);
         }
 
@@ -54,8 +52,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(!auth()->user()->can("user.create"))
-        {
+        if (! auth()->user()->can('user.create')) {
             return abort(403);
         }
 
@@ -75,10 +72,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if(!auth()->user()->can("user.update"))
-        {
+        if (! auth()->user()->can('user.update')) {
             return abort(403);
         }
+
         return view('roles.edit', compact('user'));
     }
 
@@ -87,8 +84,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if(!auth()->user()->can("user.update"))
-        {
+        if (! auth()->user()->can('user.update')) {
             return abort(403);
         }
         //
@@ -99,8 +95,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        if(!auth()->user()->can("user.delete"))
-        {
+        if (! auth()->user()->can('user.delete')) {
             return abort(403);
         }
         //
@@ -108,8 +103,7 @@ class UserController extends Controller
 
     public function roles(User $user): View
     {
-        if(!auth()->user()->can("user.create"))
-        {
+        if (! auth()->user()->can('user.create')) {
             return abort(403);
         }
         /** @var view-string $viewName */
@@ -120,8 +114,7 @@ class UserController extends Controller
 
     public function assignRole(User $user): View
     {
-        if(!auth()->user()->can("user.create"))
-        {
+        if (! auth()->user()->can('user.create')) {
             return abort(403);
         }
 
@@ -135,8 +128,7 @@ class UserController extends Controller
 
     public function roleAssign(Request $request): RedirectResponse
     {
-        if(!auth()->user()->can("user.create"))
-        {
+        if (! auth()->user()->can('user.create')) {
             return abort(403);
         }
         $request->validate([
