@@ -17,6 +17,9 @@ class RoleController extends Controller
      */
     public function index(): View|JsonResponse
     {
+        if (! auth()->user()->can('role.read')) {
+            return abort(403);
+        }
         $roles = Role::all();
         if (request()->ajax()) {
             return DataTables::of($roles)->make(true);
@@ -33,6 +36,9 @@ class RoleController extends Controller
      */
     public function create(): View
     {
+        if (! auth()->user()->can('role.create')) {
+            return abort(403);
+        }
         /** @var view-string $viewName */
         $viewName = 'roles.create';
 
@@ -44,6 +50,9 @@ class RoleController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if (! auth()->user()->can('role.create')) {
+            return abort(403);
+        }
         $request->validate([
             'name' => 'required|min:3|max:20',
         ]);
@@ -68,6 +77,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role): View
     {
+        if (! auth()->user()->can('role.update')) {
+            return abort(403);
+        }
+
         return view('roles.edit', compact('role'));
     }
 
@@ -76,6 +89,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role): RedirectResponse
     {
+        if (! auth()->user()->can('role.update')) {
+            return abort(403);
+        }
+
         $request->validate([
             'name' => 'required|min:3|max:20',
         ]);
@@ -91,6 +108,10 @@ class RoleController extends Controller
      */
     public function destroy(Role $role): RedirectResponse
     {
+        if (! auth()->user()->can('role.destroy')) {
+            return abort(403);
+        }
+
         $role->delete();
 
         return redirect()->back()->with('success', 'Role delete successfully');
@@ -98,6 +119,10 @@ class RoleController extends Controller
 
     public function permissions(Role $role): View
     {
+        if (! auth()->user()->can('role.create')) {
+            return abort(403);
+        }
+
         $permissions = Permission::all();
         /** @var view-string $viewName */
         $viewName = 'roles.permissions';
@@ -107,6 +132,10 @@ class RoleController extends Controller
 
     public function assignPermissions(Request $request)
     {
+        if (! auth()->user()->can('role.create')) {
+            return abort(403);
+        }
+
         $request->validate([
             'permissions' => 'required',
         ]);
