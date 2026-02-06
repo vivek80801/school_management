@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,14 +13,15 @@ use Yajra\DataTables\Facades\DataTables;
 
 class RoleController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
     public function index(): View|JsonResponse
     {
-        if (! auth()->user()->can('role.read')) {
-            return abort(403);
-        }
+        $this->authorize('viewAny', Role::class);
+
         $roles = Role::all();
         if (request()->ajax()) {
             return DataTables::of($roles)->make(true);
@@ -36,9 +38,7 @@ class RoleController extends Controller
      */
     public function create(): View
     {
-        if (! auth()->user()->can('role.create')) {
-            return abort(403);
-        }
+        $this->authorize('create', Role::class);
         /** @var view-string $viewName */
         $viewName = 'roles.create';
 
@@ -50,9 +50,7 @@ class RoleController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! auth()->user()->can('role.create')) {
-            return abort(403);
-        }
+        $this->authorize('create', Role::class);
         $request->validate([
             'name' => 'required|min:3|max:20',
         ]);
@@ -77,9 +75,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role): View
     {
-        if (! auth()->user()->can('role.update')) {
-            return abort(403);
-        }
+        $this->authorize('update', $role);
 
         return view('roles.edit', compact('role'));
     }
@@ -89,9 +85,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role): RedirectResponse
     {
-        if (! auth()->user()->can('role.update')) {
-            return abort(403);
-        }
+        $this->authorize('update', $role);
 
         $request->validate([
             'name' => 'required|min:3|max:20',
@@ -108,9 +102,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role): RedirectResponse
     {
-        if (! auth()->user()->can('role.destroy')) {
-            return abort(403);
-        }
+        $this->authorize('delete', $role);
 
         $role->delete();
 
@@ -119,9 +111,7 @@ class RoleController extends Controller
 
     public function permissions(Role $role): View
     {
-        if (! auth()->user()->can('role.create')) {
-            return abort(403);
-        }
+        $this->authorize('update', $role);
 
         $permissions = Permission::all();
         /** @var view-string $viewName */
@@ -130,25 +120,13 @@ class RoleController extends Controller
         return view($viewName, compact('role', 'permissions'));
     }
 
-    public function assignPermissions(Request $request)
+    public function assignPermissions(Request $request, Role $role): RedirectResponse
     {
-        if (! auth()->user()->can('role.create')) {
-            return abort(403);
-        }
+        $this->authorize('update', $role);
 
         $request->validate([
             'permissions' => 'required',
         ]);
-
-        if (strlen($request->role) <= 0) {
-            return redirect()->back()->with('error', 'Something went wrong');
-        }
-
-        $role = Role::find($request->role);
-
-        if (! $role) {
-            return redirect()->back()->with('error', 'Something went wrong');
-        }
 
         $role->syncPermissions($request->permissions);
 

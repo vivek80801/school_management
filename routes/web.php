@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
         'controller' => RoleController::class,
     ], function () {
         Route::get('/permission/{role}', 'permissions')->name('permissions');
-        Route::post('/permission', 'assignPermissions')->name('assignpermission');
+        Route::post('/permission/{role}', 'assignPermissions')->name('assignpermission');
     });
 
     Route::resource('roles', RoleController::class);
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     ], function () {
         Route::get('/roles/{user}', 'roles')->name('roles');
         Route::get('/assign/role/{user}', 'assignRole')->name('roles.assign');
-        Route::post('/assign/role', 'roleAssign')->name('roles.roleassign');
+        Route::post('/assign/role/{user}', 'roleAssign')->name('roles.roleassign');
     });
 
     Route::resource('users', UserController::class);

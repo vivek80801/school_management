@@ -4,7 +4,7 @@
 @section("content")
     <div class="card">
         <h1>Assign Permission</h1>
-        <form action="{{ route('roles.assignpermission') }}" method="post">
+        <form action="{{ route('roles.assignpermission', $role) }}" method="post">
             @csrf
 
             @php

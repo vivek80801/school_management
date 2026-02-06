@@ -5,7 +5,7 @@ namespace App\Actions\User;
 use App\Models\User;
 use App\Services\UserService;
 
-class createUser
+class CreateUser
 {
     public function handle($data): User
     {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\User\createUser;
+use App\Actions\User\CreateUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
@@ -31,7 +31,7 @@ class AuthController extends Controller
         }
     }
 
-    public function registerStore(RegisterRequest $request, createUser $createUser): RedirectResponse
+    public function registerStore(RegisterRequest $request, CreateUser $createUser): RedirectResponse
     {
         $createUser->handle((object) $request->validated());
 

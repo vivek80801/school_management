@@ -4,7 +4,7 @@
 @section("content")
     <div class="card">
         <h1>Assign Role</h1>
-        <form action="{{ route('users.roles.roleassign') }}" method="post">
+        <form action="{{ route('users.roles.roleassign', $user) }}" method="post">
             @csrf
             @foreach($roles as $key => $role)
                 <div class="form-check">
