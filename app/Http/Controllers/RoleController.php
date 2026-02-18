@@ -111,7 +111,7 @@ class RoleController extends Controller
 
     public function permissions(Role $role): View
     {
-        $this->authorize('update',  $role);
+        $this->authorize('update', $role);
 
         $permissions = Permission::all();
         /** @var view-string $viewName */
