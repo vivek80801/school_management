@@ -1,0 +1,41 @@
+# Use the official PHP 8.2 image with Apache
+FROM php:8.2-apache
+
+# 1. Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    && docker-php-ext-install zip pdo_mysql mbstring exif pcntl bcmath gd
+
+# 2. Enable Apache mod_rewrite for Laravel routing
+RUN a2enmod rewrite
+
+# 3. Configure Apache Document Root to Laravel's /public
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/conf-available/*.conf
+
+# 4. Set working directory
+WORKDIR /var/www/html
+
+# 5. Copy application code
+COPY . .
+
+# 6. Install Composer and dependencies
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader
+
+# 7. Set permissions for Laravel storage and bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# 8. Expose port 80 (Render will map this automatically)
+EXPOSE 80
+
+# 9. Start Apache in the foreground
+CMD ["apache2-foreground"]
