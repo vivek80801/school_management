@@ -18,3 +18,7 @@ There are some requirements for this project
     npm run build
     ./scripts/start.sh
 ```
+
+## Live
+
+[ School Management Live ](https://school-management-u35x.onrender.com/register)
