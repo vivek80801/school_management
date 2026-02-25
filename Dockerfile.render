@@ -40,6 +40,7 @@ RUN chown -R www-data:www-data ${APACHE_DOCUMENT_ROOT} \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
+RUN if [ -f "/var/www/html/database/database.sqlite" ]; then touch "/var/www/html/database/database.sqlite"; fi
 RUN php artisan migrate
 
 ENV PORT 80
