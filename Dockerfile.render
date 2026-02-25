@@ -23,6 +23,21 @@ RUN mkdir -p ${APACHE_DOCUMENT_ROOT}
 # Update Apache config
 RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/sites-available/*.conf
 
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs
+
+# Copy package.json / package-lock.json first (caching)
+COPY package*.json ./
+
+# Install npm packages
+RUN npm install
+
+# Copy the rest of the code
+COPY . .
+
+# Build frontend
+RUN npm run build
+
 WORKDIR /var/www/html
 COPY . .
 
