@@ -76,7 +76,7 @@
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ],
         "post-install-cmd": [
-          "sh scripts/pre-commit.sh"
+          "if [ -d .git ]; then sh scripts/pre-commit.sh; fi"
         ]
     },
     "extra": {
