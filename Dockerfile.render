@@ -1,7 +1,6 @@
-# Use the official PHP 8.2 image with Apache
 FROM php:8.2-apache
 
-# 1. Install system dependencies (ADD sqlite here)
+# Install system dependencies including sqlite
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -13,24 +12,27 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     zip \
     unzip \
-    && docker-php-ext-install zip pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd
+    && docker-php-ext-install zip pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
 RUN a2enmod rewrite
-RUN chown -R www-data:www-data ${APACHE_DOCUMENT_ROOT}
+RUN mkdir -p ${APACHE_DOCUMENT_ROOT}
 
-
-RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/sites-available/*.conf \
- && sed -ri -e "s!/var/www!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/apache2.conf
+# Update Apache config
+RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/sites-available/*.conf
 
 WORKDIR /var/www/html
 COPY . .
 
+# Set permissions
+RUN chown -R www-data:www-data ${APACHE_DOCUMENT_ROOT} \
+    /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
-
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 80
 CMD ["apache2-foreground"]
