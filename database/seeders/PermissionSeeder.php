@@ -16,10 +16,12 @@ class PermissionSeeder extends Seeder
         app()[Permission::class]->forgetCachedPermissions();
 
         $actions = ['create', 'read', 'update', 'delete'];
+
         $modules = [
             'user',
             'role',
         ];
+
         foreach ($modules as $module) {
             foreach ($actions as $action) {
                 Permission::firstOrCreate([
