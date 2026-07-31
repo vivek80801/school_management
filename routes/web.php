@@ -10,10 +10,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'store']);
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'registerStore']);
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'store']);
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerStore']);
+    Route::get('/forget_password', [AuthController::class, 'forget_password_get'])->name('forget_password');
+    Route::post('/forget_password', [AuthController::class, 'forget_password_post']);
+    Route::get('/reset-password/{token}', [AuthController::class, 'forget_password_reset'])->name('password.reset');
+    Route::post('/reset-password', [AuthController::class, 'reset_password'])->name('password.update');
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
